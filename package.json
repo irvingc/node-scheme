@@ -1,0 +1,17 @@
+{
+	"name": "node-scheme",
+	"description": "A Scheme interpreter written in JavaScript",
+	"version": "0.1.0",
+	"author": "Irving Cordova <irving@irvingc.com>",
+	"devDependencies": {
+		"jake": "0.3.x",
+		"jscc-node": "0.4.x",
+		"mocha": "1.4.x"
+	},
+	"scripts": {
+		"postinstall": "jake",
+		"test": "jake test",
+		"clean": "jake clean"
+	},
+	"engine": "node >= 0.4.7"
+}
