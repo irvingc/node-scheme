@@ -1,0 +1,53 @@
+/~ Scheme interpreter written in JS/CC ~/
+/~ Grammar tokens ~/
+
+	'[^"^\\]+'	STRING
+	;
+##
+program: expression	[* print(%1); *]
+	;
+
+expression: STRING
+	;
+
+/~ The parser entry point ~/
+
+[*
+var readline = require('readline');
+
+function eval(str) {
+	var error_offsets = new Array();
+	var error_lookaheads = new Array();
+	var error_count = 0;
+
+	if( ( error_count = __##PREFIX##parse( str, error_offsets, error_lookaheads ) ) > 0 ) {
+		for( i = 0; i < error_count; i++ ) {
+			print( "Parse error near \"" + str.substr( error_offsets[i] ) + "\", expecting \"" +error_lookaheads[i].join() + "\"" );
+		}
+	}
+}
+
+function print(str) {
+	console.log(str);
+}
+
+
+var rl = readline.createInterface({
+	input: process.stdin,
+	output: process.stdout
+});
+
+rl.setPrompt('> ', 2);
+rl.prompt();
+rl.on('line', function(cmd) {
+	if(cmd == '\\\q') {
+		print("Exiting...");
+		rl.close();
+	} else {
+		eval(cmd);
+		rl.prompt();
+	}
+});
+
+
+*]
