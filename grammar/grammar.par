@@ -7,7 +7,7 @@ var Scheme = require('../lib/definitions');
 ! 	'[ \t]+|[ \t]*;.*'
 	;
 /~ Grammar tokens ~/
-	'[A-Za-z][^ \)\(]*|\+'	IDENTIFIER	[* %match = new Scheme.Identifier(%match); *]
+	'[A-Za-z\*][^ \)\(]*|\+|-'	IDENTIFIER	[* %match = new Scheme.Identifier(%match); *]
 	'[0-9]+|[0-9]+\.[0-9]*|[0-9]*\.[0-9]+'		NUMBER		[* %match = new Scheme.Number(%match); *]
 	'"[^"]*"'					STRING		[* %match = new Scheme.String(%match); *]
 	'\('
