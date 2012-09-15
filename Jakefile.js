@@ -1,6 +1,6 @@
 var fs = require('fs');
 var path = require('path');
-var TARGET_DIR = 'bin';
+var TARGET_DIR = 'lib';
 var SRC_DIR = 'grammar';
 var GRAMMAR_EXTENSION = '.par';
 

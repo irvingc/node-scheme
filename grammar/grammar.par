@@ -1,0 +1,40 @@
+/~ Scheme interpreter written in JS/CC ~/
+[* 
+
+	var Scheme = require('../lib/definitions');
+*]
+
+/~ Ignore whitespace ~/
+! 	'[ \t]+|[ \t]*;.*'
+	;
+/~ Grammar tokens ~/
+	'"[^"]*"'					STRING		[* %match = new Scheme.String(%match); *]
+	'[A-Za-z!$%&\*/:<=>\?~_\^].*|\+|-|\.\.\.'	IDENTIFIER	[* %match = new Scheme.Identifier(%match); *]
+	'[0-9]+|[0-9]+\.[0-9]*|[0-9]*\.[0-9]+'		NUMBER		[* %match = new Scheme.Number(%match); *]
+	'\('
+	'\)'
+	'\.'
+	;
+##
+program: datum				[* Scheme.addProgramTree(%1); *]
+	;
+datum: symbol
+	| STRING
+	;
+symbol: IDENTIFIER
+	;
+
+
+/~ Let's export our parsing prowess ~/
+
+[*
+
+//##PREFIX##_dbg_withtrace = true;
+//##PREFIX##_dbg_withparsetree = true;
+//##PREFIX##_dbg_withstepbystep = true;
+
+Scheme.parse = __##PREFIX##parse;
+module.exports = Scheme;
+
+
+*]

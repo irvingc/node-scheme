@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+
+var Readline = require('readline');
+var Scheme = require('../lib/scheme');
+
+var std = Readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+std.setPrompt('> ', 2);
+
+std.on('line', function(cmd) {
+  if(cmd == '\\q') {
+    console.log("Exiting...");
+    std.close();
+  } else {
+    Scheme.read(cmd);
+    console.log(Scheme.tree);
+    std.prompt();
+  } 
+});
+
+
+std.prompt();
