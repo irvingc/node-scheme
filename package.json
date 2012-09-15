@@ -3,6 +3,10 @@
 	"description": "A Scheme interpreter written in JavaScript",
 	"version": "0.1.0",
 	"author": "Irving Cordova <irving@irvingc.com>",
+	"bin": {
+		"node-scheme" : "./bin/scheme"
+	},
+	"main" : "./lib/scheme.js",
 	"devDependencies": {
 		"jake": "0.3.x",
 		"jscc-node": "0.4.x",
