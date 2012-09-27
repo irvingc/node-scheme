@@ -27,7 +27,7 @@ std.on('line', function(cmd) {
         if(!Util.isError(evaled)) {
           console.log(Util.format(evaled));
         } else {
-          console.log(error.message);
+          console.log(evaled.message);
         }
 
       }

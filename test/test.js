@@ -26,8 +26,48 @@ describe('Scheme', function() {
       });
     });
     it('should wrap symbols in <>', function(done) {
-      readEval('symbol', function(result) {
-        assert.equal('<SYMBOL>', result);
+      readEval('val', function(result) {
+        assert.equal('Error: Symbol "VAL" not defined.', result);
+        done();
+      });
+    });
+  });
+  describe('define', function() {
+    it('should return nothing on define', function(done) {
+      readEval('(define x 3)', function(result) {
+        assert.equal('', result);
+        done(); 
+      });
+    });
+    it('should return on previously defined symbol', function(done) {
+      readEval('x', function(result) {
+        assert.equal('3', result);
+        done();
+      });
+    });
+    it('should be able to operate on defined symbols', function(done) {
+      readEval('(+ 1 x)', function(result) {
+        assert.equal('4', result);
+        done();
+      });
+    });
+  });
+  describe('lambda', function() {
+    it('should be created freely', function(done) {
+      readEval('(lambda (x) (+ 1 x))', function(result) {
+        assert.equal('Function', result);
+        done();
+      });
+    });
+    it('should be definable', function(done) {
+      readEval('(define plus (lambda (x) (+ 1 x)))', function(result) {
+        assert.equal('', result);
+        done();
+      });
+    });
+    it('should be usable', function(done) {
+      readEval('(plus 3)', function (result) {
+        assert.equal('4', result);
         done();
       });
     });
