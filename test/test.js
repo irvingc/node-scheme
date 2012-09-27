@@ -86,6 +86,14 @@ describe('Scheme', function() {
       });
     });
   });
+  describe('quote', function() {
+    it('should quote a list', function(done) {
+      readEval('(quote (1 2 3))', function (result) {
+        assert.equal('(1 2 3)', result);
+        done();
+      });
+    });
+  });
   describe('+', function() {
     it('should add two numbers', function(done) {
       readEval('(+ 1 2)', function(result) {
