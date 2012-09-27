@@ -72,6 +72,20 @@ describe('Scheme', function() {
       });
     });
   });
+  describe('if', function() {
+    it('should return then statement', function(done) {
+      readEval('(if (eq 1 1) 3 4)', function(result) {
+        assert.equal('3', result);
+        done();
+      });
+    });
+    it('should return else statement', function(done) {
+      readEval('(if (eq 2 3) 3 4)', function(result) {
+        assert.equal('4', result);
+        done();
+      });
+    });
+  });
   describe('+', function() {
     it('should add two numbers', function(done) {
       readEval('(+ 1 2)', function(result) {
