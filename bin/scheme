@@ -23,15 +23,13 @@ std.on('line', function(cmd) {
         console.log(error.message);
       } else {
 
-        Scheme.eval(parsed, function(error, result) {
+        var evaled = Scheme.eval(parsed);
+        if(!Util.isError(evaled)) {
+          console.log(Util.format(evaled));
+        } else {
+          console.log(error.message);
+        }
 
-          if(error) {
-            console.log(error.message);
-          } else {
-            console.log(Util.format(result));
-          }
-
-        });
       }
 
       std.prompt();
