@@ -2,7 +2,7 @@
 
 var Readline = require('readline');
 var Scheme = require('../lib/scheme');
-var Util =  require('util');
+var Util =  require('../lib/util');
 
 var std = Readline.createInterface({
   input: process.stdin,
@@ -16,10 +16,19 @@ std.on('line', function(cmd) {
     console.log("Exiting...");
     std.close();
   } else {
-    Scheme.read(cmd);
-    var inspected = Util.inspect(Scheme.tree, true, 10, true);
-    console.log(inspected);
-    std.prompt();
+
+    Scheme.read(cmd, function(error, parsed) {
+
+      if(error) {
+        console.log(error.message);
+      } else {
+        var inspected = Util.format(parsed);
+        console.log(inspected);
+      }
+
+      std.prompt();
+    
+    });
   } 
 });
 
