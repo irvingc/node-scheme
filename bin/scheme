@@ -22,8 +22,16 @@ std.on('line', function(cmd) {
       if(error) {
         console.log(error.message);
       } else {
-        var inspected = Util.format(parsed);
-        console.log(inspected);
+
+        Scheme.eval(parsed, function(error, result) {
+
+          if(error) {
+            console.log(error.message);
+          } else {
+            console.log(Util.format(result));
+          }
+
+        });
       }
 
       std.prompt();
