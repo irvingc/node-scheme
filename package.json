@@ -9,7 +9,7 @@
 	"main" : "./lib/scheme.js",
 	"devDependencies": {
 		"jake": "0.3.x",
-		"jscc-node": "0.4.x",
+		"jscc-node": "0.3.1",
 		"mocha": "1.4.x"
 	},
 	"scripts": {
