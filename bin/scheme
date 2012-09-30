@@ -9,7 +9,10 @@ var std = Readline.createInterface({
   output: process.stdout
 });
 
-std.setPrompt('> ', 2);
+console.log('\nWelcome to this toy implementation of scheme');
+console.log('To exit press type \\q\n');
+
+std.setPrompt('> ');
 
 std.on('line', function(cmd) {
   if(cmd == '\\q') {

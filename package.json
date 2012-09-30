@@ -13,7 +13,7 @@
 		"mocha": "1.4.x"
 	},
 	"scripts": {
-		"postinstall": "jake",
+		"prepublish": "jake",
 		"test": "jake test",
 		"clean": "jake clean"
 	},
