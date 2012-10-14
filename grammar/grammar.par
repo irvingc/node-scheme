@@ -25,7 +25,7 @@ expression: application
 	;
 application: '(' ')'			[* %% = new Scheme.Null(); *]
 	| '(' expressions ')'		[* %% = %2; *]
-	| '(' expressions '.' form ')'	[* %2.append(%4); %% = %2; *]
+	| '(' expressions '.' form ')'	[* Scheme.Helpers.append(%2, %4); %% = %2; *]
 	;
 expressions: expression expressions	[* %% = new Scheme.Cons(%1, %2); *]
 	| expression			[* %% = new Scheme.Cons(%1); *]

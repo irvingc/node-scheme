@@ -9,10 +9,8 @@ function readEval(str, callback) {
     assert.ifError(error);
     
     var evaled = scheme.eval(parsed);
-    console.log('evaled', evaled);
     assert.ok(!util.isError(error));
     var formatted = util.format(evaled);
-    console.log('Result:' + formatted);
     callback(formatted);
   });
 }
@@ -33,9 +31,9 @@ describe('Scheme', function() {
     });
   });
   describe('define', function() {
-    it('should return nothing on define', function(done) {
+    it('should return evaled expression on define', function(done) {
       readEval('(define x 3)', function(result) {
-        assert.equal('', result);
+        assert.equal('3', result);
         done(); 
       });
     });
@@ -61,7 +59,7 @@ describe('Scheme', function() {
     });
     it('should be definable', function(done) {
       readEval('(define plus (lambda (x) (+ 1 x)))', function(result) {
-        assert.equal('', result);
+        assert.equal('Function', result);
         done();
       });
     });
